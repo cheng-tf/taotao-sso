@@ -157,6 +157,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public TaotaoResult logout(String token) {
+        // 设置缓存失效
+        if(token != null) {
+            jedisClient.delete(USER_SESSION + ":" + token);
+        }
         return TaotaoResult.ok();
     }
 

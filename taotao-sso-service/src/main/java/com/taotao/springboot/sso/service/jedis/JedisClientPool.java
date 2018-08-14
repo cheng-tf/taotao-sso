@@ -60,6 +60,11 @@ public class JedisClientPool implements JedisClient{
     }
 
     @Override
+    public Boolean delete(String key) {
+        return redisTemplate.delete(key);
+    }
+
+    @Override
     public Boolean exists(String key) {
         return redisTemplate.hasKey(key);
     }
