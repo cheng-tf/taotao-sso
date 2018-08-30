@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+
+    <!-- 日志文件：存储位置 -->
+    <property name="log.path" value="logs" />
+
+    <!-- appender：写日志组件 -->
+    <!-- ConsoleAppender：日志输出控制台 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder charset="UTF-8">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80}[%L] - %msg%n</pattern>
         </encoder>
     </appender>
-
-    <appender name="SYS_INFO"
-        class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- RollingFileAppender：滚动日志记录文件 -->
+    <appender name="SYS_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/system_info.log</file>
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -24,14 +29,12 @@
             </timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
-
         <encoder charset="UTF-8">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80}[%L] - %msg%n</pattern>
         </encoder>
     </appender>
-
-    <appender name="SYS_ERROR"
-        class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- RollingFileAppender：滚动日志记录文件 -->
+    <appender name="SYS_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/system_error.log</file>
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -48,14 +51,12 @@
             </timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
-
         <encoder charset="UTF-8">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80}[%L] - %msg%n</pattern>
         </encoder>
     </appender>
-
-    <appender name="APP_INFO"
-        class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- RollingFileAppender：滚动日志记录文件 -->
+    <appender name="APP_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/app_info.log</file>
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -72,14 +73,12 @@
             </timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
-
         <encoder charset="UTF-8">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80}[%L] - %msg%n</pattern>
         </encoder>
     </appender>
-
-    <appender name="APP_ERROR"
-        class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- RollingFileAppender：滚动日志记录文件 -->
+    <appender name="APP_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/app_error.log</file>
         <append>true</append>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -96,18 +95,19 @@
             </timeBasedFileNamingAndTriggeringPolicy>
             <maxHistory>100</maxHistory>
         </rollingPolicy>
-
         <encoder charset="UTF-8">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{80}[%L] - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="com.taotao.shop" level="INFO" additivity="false">
+    <!-- logger：设置某一个包或具体的某一个类的日志打印级别、Appender -->
+    <logger name="com.taotao" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="APP_INFO" />
         <appender-ref ref="APP_ERROR" />
     </logger>
 
+    <!-- root：根logger,即所有logger的上级 -->
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="SYS_INFO" />
